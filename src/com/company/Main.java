@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.xml.namespace.QName;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Main {
 
             for (int i = 0; i < 10; i++) {
                 int userNum = askInt("Please, enter your guess:", 1, 100);
+
 
 
                 if (myNum > userNum) {
@@ -73,4 +75,5 @@ public class Main {
         }
     }
 }
+
 
