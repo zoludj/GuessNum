@@ -24,8 +24,12 @@ public class Main {
 
 
         do {
+            {
+            System.out.println("");
+
+            }
              int myNum = rand.nextInt(100) + 1;
-             System.out.println(myNum);
+
 
 
         boolean userWon = false;
