@@ -19,11 +19,16 @@ public class Main {
 
         do {
             {
-                System.out.println("Please enter your name");
+                System.out.println("Please enter your name?");
                 Scanner scan = new
                         Scanner(System.in);
-                String phrase = scan.nextLine();
+                String username = scan.nextLine();
+                if(Pattern.matches("[a-zA-Z]*",username) == false){
+                    return;
+
+                }
             }
+
 
             int myNum = rand.nextInt(100) + 1;
 
