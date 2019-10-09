@@ -15,26 +15,21 @@ public class Main {
 
     public static void main(String[] args) {
         String answer;
-        String Name;
-
-        System.out.println("Name".matches("[a-zA-Z]*"));
-        {
-            System.out.println("What is your Name?");
-        }
-
+        String name;
 
         do {
             {
-            System.out.println("");
-
+                System.out.println("Please enter your name");
+                Scanner scan = new
+                        Scanner(System.in);
+                String phrase = scan.nextLine();
             }
-             int myNum = rand.nextInt(100) + 1;
 
+            int myNum = rand.nextInt(100) + 1;
 
+             boolean userWon = false;
 
-        boolean userWon = false;
-
-        for (int i = 0; i < 10; i++) {
+                 for (int i = 0; i < 10; i++) {
             int userNum = askInt("Please, enter your guess:", 1, 100);
 
 
