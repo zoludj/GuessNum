@@ -1,9 +1,7 @@
 package com.company;
 
 import javax.xml.namespace.QName;
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.BooleanSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,52 +10,64 @@ public class Main {
 
     static Random rand = new Random();
     static Scanner scan = new Scanner(System.in);
+    static ArrayList<GameResult> users = new ArrayList<>();
 
     public static void main(String[] args) {
-        String answer;
-        String name;
 
         do {
-            {
-                System.out.println("Please enter your name?");
-                Scanner scan = new
-                        Scanner(System.in);
-                String username = scan.nextLine();
-                if(Pattern.matches("[a-zA-Z]*",username) == false){
-                    return;
-
-                }
-            }
-
+            String userName = askString("Enter your name");
 
             int myNum = rand.nextInt(100) + 1;
+            System.out.println((myNum));
+            boolean userWon = false;
 
-             boolean userWon = false;
+            long start = System.currentTimeMillis();
 
-                 for (int i = 0; i < 10; i++) {
-            int userNum = askInt("Please, enter your guess:", 1, 100);
+            for (int i = 0; i < 10; i++) {
+                int userNum = askInt("Please, enter your guess:", 1, 100);
 
 
-            if (myNum > userNum) {
-                System.out.println("My number is greater than yours");
-            } else if (myNum < userNum) {
-                System.out.println("My number is less than yours");
-            } else {
-                System.out.println("Yeah! You won!");
-                userWon = true;
-                break;
-            }
-        }
-                if (!userWon) {
-                    System.out.println("Looser!");
+                if (myNum > userNum) {
+                    System.out.println("My number is greater than yours");
+                } else if (myNum < userNum) {
+                    System.out.println("My number is less than yours");
+                } else {
+
+                    long finish = System.currentTimeMillis();
+                    GameResult r = new GameResult();
+                    r.name = userName;
+                    r.triesCount = i + 1;
+                    r.gameplay =finish-start;
+                    users.add(r);
+                    System.out.println("Yeah! You won!");
+                    userWon = true;
+                    break;
                 }
+            }
+            if (!userWon) {
+                System.out.println("Looser!");
+            }
 
-            } while (askYesNo("Do you want to play again? (y/n)"));
+        } while (askYesNo("Do you want to play again? (y/n)"));
 
-            System.out.println("Goodbye!");
+        users.sort(Comparator.comparing(r->r.triesCount));
+
+
+        for (GameResult result : users) {
+
+            System.out.printf("%s \t\t\t %d %d\n", result.name, result.triesCount, result.gameplay/1000);
+
         }
+        System.out.println("Goodbye!");
+    }
 
-        static int askInt (String msg,int min, int max){
+
+    private static String askString(String msg) {
+        System.out.println(msg);
+        return scan.next();
+    }
+
+    static int askInt(String msg, int min, int max) {
         while (true) {
             try {
                 System.out.println(msg);
@@ -75,7 +85,7 @@ public class Main {
     }
 
 
-        static boolean askYesNo (String msg){
+    static boolean askYesNo(String msg) {
         while (true) {
             System.out.println(msg);
             String answer = scan.next();
@@ -85,6 +95,6 @@ public class Main {
                 return isY;
             }
             System.out.println("Enter 'y' or 'no' ");
-            }
         }
     }
+}
