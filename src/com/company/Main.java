@@ -12,6 +12,10 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
     static ArrayList<GameResult> users = new ArrayList<>();
 
+
+
+
+
     public static void main(String[] args) {
 
         do {
@@ -33,11 +37,12 @@ public class Main {
                     System.out.println("My number is less than yours");
                 } else {
 
+
                     long finish = System.currentTimeMillis();
                     GameResult r = new GameResult();
                     r.name = userName;
                     r.triesCount = i + 1;
-                    r.gameplay =finish-start;
+                    r.GamePlay =finish-start;
                     users.add(r);
                     System.out.println("Yeah! You won!");
                     userWon = true;
@@ -50,12 +55,12 @@ public class Main {
 
         } while (askYesNo("Do you want to play again? (y/n)"));
 
-        users.sort(Comparator.comparing(r->r.triesCount));
+        users.sort (Comparator.comparing(GameResult :: getTriesCountries).thenComparing(GameResult ::getGamePlay));
 
 
         for (GameResult result : users) {
 
-            System.out.printf("%s \t\t\t %d %d\n", result.name, result.triesCount, result.gameplay/1000);
+            System.out.printf("%s \t\t\t %d %d\n", result.name, result.triesCount, result.GamePlay/1000);
 
         }
         System.out.println("Goodbye!");
