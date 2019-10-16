@@ -1,22 +1,16 @@
 package com.company;
 
-import javax.xml.namespace.QName;
 import java.util.*;
-import java.util.function.BooleanSupplier;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Main {
 
     static Random rand = new Random();
     static Scanner scan = new Scanner(System.in);
-    static ArrayList<GameResult> users = new ArrayList<>();
-
-
-
-
+    static LeaderBoard LeaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
+            LeaderBoard.loadResults ();
 
         do {
             String userName = askString("Enter your name");
@@ -37,13 +31,9 @@ public class Main {
                     System.out.println("My number is less than yours");
                 } else {
 
-
                     long finish = System.currentTimeMillis();
                     GameResult r = new GameResult();
-                    r.name = userName;
-                    r.triesCount = i + 1;
-                    r.GamePlay =finish-start;
-                    users.add(r);
+                    LeaderBoard.addResult(userName,i+1, finish-start);
                     System.out.println("Yeah! You won!");
                     userWon = true;
                     break;
@@ -55,14 +45,10 @@ public class Main {
 
         } while (askYesNo("Do you want to play again? (y/n)"));
 
-        users.sort (Comparator.comparing(GameResult :: getTriesCountries).thenComparing(GameResult ::getGamePlay));
+        LeaderBoard.showResults();
+        LeaderBoard.showResults ();
 
 
-        for (GameResult result : users) {
-
-            System.out.printf("%s \t\t\t %d %d\n", result.name, result.triesCount, result.GamePlay/1000);
-
-        }
         System.out.println("Goodbye!");
     }
 

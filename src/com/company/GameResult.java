@@ -1,36 +1,21 @@
 package com.company;
 
 public class GameResult {
-    String name;
-    int triesCount;
-    long GamePlay;
+    private String name;
+    private int triesCount;
+    private long GamePlay;
 
+    public String getName() { return name; }
 
-    public String getName() {
-        return name;
-    }
+    public void setName(String name) { this.name = name;}
 
-    public void setName(String setName) {
+    public int getTriesCount() { return triesCount; }
 
-        this.name = name;
-    }
+    public void setTriesCount(int triesCount) { this.triesCount = triesCount; }
 
-    public int getTriesCountries() {
+    public long getGamePlay() { return GamePlay; }
 
-        return triesCount;
-    }
-
-    public void setTriesCount(int trieCount) {
-        this.triesCount = triesCount;
-
-    }
-
-    public long getGamePlay() {
-        return GamePlay;
-    }
-
-    public void setGamePlay(long GamePlay) {
-
-        this.GamePlay = GamePlay;
-    }
+    public void setGamePlay(long gamePlay) { GamePlay = gamePlay; }
 }
+
+
