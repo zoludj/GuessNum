@@ -49,7 +49,7 @@ public class LeaderBoard {
                 .sorted(Comparator.comparingInt(GameResult::getTriesCount)
                         .thenComparing(GameResult::getGamePlay))
                 .limit (5)
-                .forEach(r-> System.out.printf("%s \t\t\t %d \t\t\t %d\n",
+                .forEach(r-> System.out.printf("%-5s \t\t\t %-10d \t\t\t %d\n",
                         r.getName(),
                         r.getTriesCount(),
                         r.getGamePlay()/1000));
